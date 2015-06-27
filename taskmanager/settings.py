@@ -106,5 +106,11 @@ STATICFILES_DIRS = os.path.join(os.path.dirname(__file__), '..', 'static').repla
 TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), '..', 'templates').replace('\\','/'),)
 
 AUTH_USER_MODEL = 'accounts.User'
-#AUTHENTICATION_BACKENDS = ['accounts.backends.EmailAuthBackend', ]
 LOGIN_URL = 'accounts.views.login'
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ]
+}
