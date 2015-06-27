@@ -1,0 +1,114 @@
+{% extends 'dashboard/base/base.html' %}
+{% block maincontent %}
+<div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Task For Today - {{ today }}
+
+
+          </h1>
+
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <!-- Info boxes -->
+          {% include 'dashboard/base/widget.html' %}
+
+          <div class="row">
+            <div class="col-md-12">
+
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+
+          <!-- Main row -->
+          <div class="row">
+            <!-- Left col -->
+            <div class="col-md-12">
+              <!-- MAP & BOX PANE -->
+
+              <div class="row">
+                <div class="col-md-6">
+                  <!-- DIRECT CHAT -->
+
+                </div><!-- /.col -->
+
+                <div class="col-md-6">
+                  <!-- USERS LIST -->
+
+                </div><!-- /.col -->
+              </div><!-- /.row -->
+
+              <!-- TABLE: LATEST ORDERS -->
+              <div class="box box-info">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Task for today</h3>
+                  <div class="box-tools pull-right">
+
+
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <div class="table-responsive">
+                  {% if task_today %}
+                    <table class="table no-margin">
+                      <thead>
+                        <tr>
+                          <th>Task ID</th>
+                          <th>Task</th>
+                          <th>Status</th>
+                            <th>Deadline </th>
+                          <th>Descritption</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                      {% for task in task_today %}
+                        <tr>
+                          <td><a href="{% url 'task' task.id %}">{{ task.id }}</a></td>
+                          <td>{{ task.name }}</td>
+                          <td>
+                              {% if task.completed == True %}
+                              <span class="label label-success">Completed</span>
+                                  {% else %}
+                                  <span class="label label-warning">Pending</span>
+                              {% endif %}
+                          </td>
+                        <td>{{ task.deadline_date }}</td>
+                          <td><div class="sparkbar" data-color="#00a65a" data-height="20">{{ task.description }}</div></td>
+                        </tr>
+                      {% endfor %}
+
+
+
+
+
+
+                      </tbody>
+                    </table>
+                      {% else %}
+                      <p>No Pending Tasks</p>
+                  {% endif %}
+                  </div><!-- /.table-responsive -->
+                </div><!-- /.box-body -->
+                <div class="box-footer clearfix">
+                  <a href="{% url 'createtask' %}" class="btn btn-sm btn-info btn-flat pull-left">Create New Task</a>
+
+                </div><!-- /.box-footer -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+
+            <div class="col-md-4">
+              <!-- Info Boxes Style 2 -->
+
+
+
+
+
+
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+{% endblock %}

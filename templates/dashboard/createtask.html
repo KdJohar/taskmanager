@@ -1,0 +1,87 @@
+{% extends 'dashboard/base/base.html' %}
+{% block maincontent %}
+<div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Create Task
+
+          </h1>
+
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <!-- Info boxes -->
+          {% include 'dashboard/base/widget.html' %}
+
+          <div class="row">
+            <div class="col-md-12">
+
+
+                <form action="." method="post">
+                    {% csrf_token %}
+                    {% if form.errors %}
+                        {% for error in form.errors %}
+                            {{ error }}
+                        {% endfor %}
+
+                    {% endif %}
+
+
+                    <div class="box-body">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Task Name</label>
+                      <input type="text" class="form-control" id="exampleInputEmail1" name="name" placeholder="Task Name">
+                    </div>
+                        <div class="form-group">
+                    <label>Deadline Date</label>
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                      <input type="date" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" name="date"/>
+                    </div><!-- /.input group -->
+
+                  </div><!-- /.form group -->
+
+                     <div class="form-group">
+                      <label>Description</label>
+                      <textarea class="form-control" rows="3" placeholder="Enter ..." name="description"></textarea>
+                    </div>
+
+                    </div><!-- /.box-body -->
+
+                  <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+
+
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+
+          <!-- Main row -->
+          <div class="row">
+            <!-- Left col -->
+            <div class="col-md-8">
+              <!-- MAP & BOX PANE -->
+
+              <div class="row">
+                <div class="col-md-6">
+                  <!-- DIRECT CHAT -->
+
+                </div><!-- /.col -->
+
+
+              </div><!-- /.row -->
+
+              <!-- TABLE: LATEST ORDERS -->
+
+
+
+
+          </div><!-- /.row -->
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+{% endblock %}
